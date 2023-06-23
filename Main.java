@@ -20,7 +20,7 @@ public class Main {
         
         Reserva r2 = new Reserva(c2, "2023-07-01");
         r2.agregarAuto(a3);
-        r2.agregarAuto(r4);
+        r2.agregarAuto(a4);
         
         r2.calcularDias();
         r2.imprimirTicket();
