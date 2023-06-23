@@ -3,17 +3,18 @@ package rentacarloboscofuentesfresco;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class Reserva {
     private ArrayList<Auto> lista;
     private Cliente cli;
-    private LocalDate fechaIni;
+    private LocalDate fechaIni = LocalDate.now();
     private LocalDate fechaFin;
     private int cantDias;
     private static int cantRes;
     private int idRes;
     
-    public RENTA(Cliente c, int dias){
+    public Reserva(Cliente c, int dias){
         this.cli = c;
         this.cantDias = dias;
         this.cantRes ++;
@@ -21,11 +22,12 @@ public class Reserva {
         this.lista = new ArrayList();
     }
     
-    public RENTA(CLIENTE c, LocalDate fechaFin){
+    public Reserva(Cliente c, LocalDate fechaFin){
         this.cli = c;
         this.fechaFin = fechaFin;
         this.cantRes ++;
         this.idRes = cantRes;
+        this.lista = new ArrayList();
     }
     
     public ArrayList<Auto> getLista() {
@@ -90,20 +92,29 @@ public class Reserva {
     
     public int calcularDias(){
         Period periodoDias = fechaIni.until(fechaFin);
-        int dias = periodoDias.getDays();
-        return dias;
+        this.cantDias = periodoDias.getDays();
+        return cantDias;
     }
     
-    public void calcularFechaFin(){
-        
+    public LocalDate calcularFechaFin(){
+        fechaFin = fechaIni.plusDays(cantDias);
+        return fechaFin;
     }
     
     public double calcularTotalRenta(){
-        
+        double total = 0;
+        for(Auto a: lista){
+            total += a.getPrecio();
+        }
+        return total;
     }
     
     public void imprimirTicket(){
-        
+        for(Auto a: lista){
+            a.mostrarAuto();
+        }
+        cli.mostrarCliente();
+        JOptionPane.showMessageDialog(null, "Reserva:\nfecha Inicial: " + this.fechaIni + " fecha final: " + this.fechaFin + ", cantidad de dias: " + this.cantDias + ", id reserva: " + this.idRes + ", total: " + calcularTotalRenta());
     }
 
 }
