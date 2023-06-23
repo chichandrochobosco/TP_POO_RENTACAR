@@ -1,5 +1,6 @@
-
 package rentacarloboscofuentesfresco;
+
+import javax.swing.JOptionPane;
 
 
 public class Auto {
@@ -17,12 +18,48 @@ public class Auto {
         this.precio = precio;
     }
 
-    
-    public void mostrarAuto() {
-        System.out.println("Auto: " + "matricula=" + matricula + ", modelo=" + modelo + ", marca=" + marca + ", color=" + color + ", precio=" + precio);
+    public String getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
     }
     
-    
-    
-           
+    public void mostrarAuto(){
+        JOptionPane.showMessageDialog(null, "Auto:\nmatricula: " + this.matricula + ", modelo: " + this.modelo + ", marca: " + this.marca + ", color: " + this.color + ", precio: " + this.precio);
+    }
+        
 }
